@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Con Fech</h1>
+    <h1>Listado</h1>
+    <div id="start">Estrella</div>
 
     <ul id="age">
         Listado inicio:
@@ -25,10 +26,16 @@
         // Begin accessing JSON data here
 
         var data = JSON.parse(this.response)
-       // console.log(data.data)
+       //console.log(data)
 
         var datas = data.data
-       // console.log(datas)
+        console.log(datas[0])
+
+                var newDiv = document.createElement("div");
+                var newContent = document.createTextNode(`Nombre: ${datas[17].employee_name} , edad: ${datas[0].employee_age}`); 
+                newDiv.appendChild(newContent)
+                // añade el elemento creado y su contenido al DOM         
+                document.querySelector("#start").appendChild(newDiv); 
        
         datas.forEach(elm => {
             
@@ -36,13 +43,16 @@
                 var newDiv = document.createElement("li");
                 var newContent = document.createTextNode(elm.employee_name); 
                 newDiv.appendChild(newContent)
-             // añade el elemento creado y su contenido al DOM 
+                // añade el elemento creado y su contenido al DOM 
                 
                 document.querySelector("#age").appendChild(newDiv); 
-            }
-        });
+                }
+            });
+        }
+
+
+
        
-    }
         
 
         request.send()
