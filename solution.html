@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Con Fech</h1>
+
+    <ul id="age">
+        Listado inicio:
+
+    </ul>
+
+
+    <script>
+        // Create a request variable and assign a new XMLHttpRequest object to it.
+        var request = new XMLHttpRequest()
+
+        //Open the connection, using the Get request on the URL endpoint
+        request.open('GET', 'http://dummy.restapiexample.com/api/v1/employees', true)
+
+        request.onload = function () {
+        // Begin accessing JSON data here
+
+        var data = JSON.parse(this.response)
+       // console.log(data.data)
+
+        var datas = data.data
+       // console.log(datas)
+       
+        datas.forEach(elm => {
+            
+             if(elm.employee_age > 50 ) {
+                var newDiv = document.createElement("li");
+                var newContent = document.createTextNode(elm.employee_name); 
+                newDiv.appendChild(newContent)
+             // añade el elemento creado y su contenido al DOM 
+                
+                document.querySelector("#age").appendChild(newDiv); 
+            }
+        });
+       
+    }
+        
+
+        request.send()
+
+    </script>
+</body>
+</html>
